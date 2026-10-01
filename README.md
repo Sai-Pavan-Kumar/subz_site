@@ -16,4 +16,5 @@ The official landing page for **Subz — Master English While Watching YouTube**
 - HTML5 semantic markup
 - CSS3 (Plus Jakarta Sans typography, Apple-grade design tokens)
 - Vanilla JavaScript (live word card interaction & Web Speech API)
-- Deployed on **Cloudflare Pages**
+- **CI/CD:** Automated continuous deployment on git push via Cloudflare Pages
+
