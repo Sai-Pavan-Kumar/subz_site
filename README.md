@@ -7,8 +7,8 @@ The official landing page for **Subz — Master English While Watching YouTube**
 
 ## 🚀 Features
 
-- **Interactive Live Subtitle Simulation:** Try the Subz 0ms Word Card and native voice pronunciation directly in the browser.
-- **Chrome Web Store & Direct Download:** One-click links to install the extension.
+- **Interactive Live Subtitle Simulation:** Test instant subtitle word lookups and native audio pronunciation directly in the browser.
+- **Chrome Web Store:** One-click install for the Chrome extension.
 - **Responsive & Lightweight:** 100% pure light mode, zero heavy frameworks, ultra-fast load times on Cloudflare Pages edge network.
 
 ## 🛠️ Stack
