@@ -1,0 +1,19 @@
+# Subz Official Landing Page 🌐
+
+> **Live Website:** [https://subz.thesurfboard.in](https://subz.thesurfboard.in) (or [https://subz-site.pages.dev](https://subz-site.pages.dev))  
+> Built with precision by **The SurfBoard**.
+
+The official landing page for **Subz — Master English While Watching YouTube**.
+
+## 🚀 Features
+
+- **Interactive Live Subtitle Simulation:** Try the Subz 0ms Word Card and native voice pronunciation directly in the browser.
+- **Chrome Web Store & Direct Download:** One-click links to install the extension.
+- **Responsive & Lightweight:** 100% pure light mode, zero heavy frameworks, ultra-fast load times on Cloudflare Pages edge network.
+
+## 🛠️ Stack
+
+- HTML5 semantic markup
+- CSS3 (Plus Jakarta Sans typography, Apple-grade design tokens)
+- Vanilla JavaScript (live word card interaction & Web Speech API)
+- Deployed on **Cloudflare Pages**

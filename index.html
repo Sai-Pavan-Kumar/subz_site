@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subz — Master English While Watching YouTube</title>
+  <meta name="description" content="Subz intelligently underlines uncommon vocabulary in YouTube subtitles, delivers instant 0ms definitions, and helps you build a personal vocabulary notebook. Built by The SurfBoard.">
+  <link rel="icon" type="image/png" href="assets/icon128.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#" class="brand">
+        <img src="assets/logo.png" alt="Subz Logo" class="brand-logo" width="34" height="34">
+        <span class="brand-text">SUBZ</span>
+        <span class="brand-by">by <strong class="surfboard-gradient">The SurfBoard</strong></span>
+      </a>
+      <nav class="nav-links">
+        <a href="#demo">Live Demo</a>
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#privacy">Privacy</a>
+      </nav>
+      <div class="nav-cta">
+        <a href="#download" class="btn btn-nav">Add to Chrome</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-container">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        <span>Version 1.0.0 Live • 100% Free & Open-Source</span>
+      </div>
+      <h1 class="hero-title">
+        Master English While <br>
+        <span class="accent-text">Watching YouTube.</span>
+      </h1>
+      <p class="hero-subtitle">
+        Subz intelligently detects uncommon vocabulary in real-time captions, delivers instant 0ms definitions with pronunciation, and builds your personal vocabulary notebook—without ever breaking your flow.
+      </p>
+
+      <div class="hero-buttons" id="download">
+        <a href="https://chrome.google.com/webstore" target="_blank" class="btn btn-primary" id="btn-cws">
+          <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C8.21 0 4.831 1.757 2.632 4.501l3.953 6.848A5.454 5.454 0 0 1 12 6.545h10.73A11.968 11.968 0 0 0 12 0zm11.238 6.545a12.007 12.007 0 0 1-5.32 15.698l3.955-6.85a5.457 5.457 0 0 0 1.365-8.848zm-1.077 3.273H12a5.455 5.455 0 0 0-4.723 8.182L1.923 8.182A12.008 12.008 0 0 0 12 24c4.61 0 8.653-2.603 10.161-6.409zM12 16.364a4.364 4.364 0 1 1 0-8.728 4.364 4.364 0 0 1 0 8.728z"/>
+          </svg>
+          <span>Add to Chrome — Free</span>
+        </a>
+        <a href="assets/subz-v1.0.0-production.zip" download="subz-v1.0.0.zip" class="btn btn-secondary">
+          <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <span>Direct Download (.zip)</span>
+        </a>
+      </div>
+
+      <div class="hero-trust">
+        <span>✓ Zero Configuration</span>
+        <span>✓ 100% Client-Side Privacy</span>
+        <span>✓ Works on All English YouTube Videos</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Live Demo Section -->
+  <section class="demo-section" id="demo">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Interactive Preview</span>
+        <h2 class="section-title">Experience the 0ms Word Card</h2>
+        <p class="section-subtitle">Click the amber underlined words in the subtitle below to test the instant card popover and pronunciation in action.</p>
+      </div>
+
+      <div class="demo-card-stage">
+        <!-- Mock YouTube Player -->
+        <div class="player-mockup">
+          <div class="player-topbar">
+            <div class="player-title">
+              <span class="yt-badge">HD</span>
+              <span>Lex Fridman Podcast #421 — The Future of Language</span>
+            </div>
+            <div class="player-status">Subz Active ●</div>
+          </div>
+
+          <div class="player-screen">
+            <div class="screen-watermark">Interactive Simulation</div>
+            <!-- Subtitle Overlay -->
+            <div class="subtitle-box">
+              <p class="subtitle-text">
+                "We need to <span class="subz-word" data-word="dissect">dissect</span> the subtle <span class="subz-word" data-word="nuances">nuances</span> of this sentence."
+              </p>
+            </div>
+          </div>
+
+          <div class="player-controls">
+            <div class="playback-bar"><div class="playback-fill"></div></div>
+            <div class="controls-row">
+              <span class="control-btn">▶</span>
+              <span class="control-btn">⏮ 5s</span>
+              <span class="control-time">14:28 / 58:10</span>
+              <span class="control-pill active">CC English</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Word Card Popover (Live) -->
+        <div class="interactive-card" id="demo-card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <h3 class="card-word" id="card-word">Dissect</h3>
+              <span class="card-pos" id="card-pos">verb</span>
+              <span class="card-level" id="card-level">Intermediate</span>
+            </div>
+            <button class="card-btn-save" id="demo-save-btn">★ Saved</button>
+          </div>
+
+          <div class="card-audio-row">
+            <span class="card-phonetic" id="card-phonetic">/dɪˈsɛkt/</span>
+            <button class="audio-pill" id="demo-audio-1">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+              1.0x
+            </button>
+            <button class="audio-pill" id="demo-audio-slow">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+              0.75x
+            </button>
+          </div>
+
+          <div class="card-definition" id="card-def">
+            To analyze and examine something in close detail piece by piece.
+          </div>
+
+          <div class="card-context" id="card-context">
+            <strong>IN THIS SCENE:</strong><br>
+            "We need to dissect the subtle nuances of this sentence."
+          </div>
+
+          <div class="card-footer">
+            <button class="btn-replay" id="demo-replay">↺ Replay 5s</button>
+            <span class="btn-ghost">I know this</span>
+            <button class="btn-resume" id="demo-resume">Resume ▶</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature Grid -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Engineered for Learners</span>
+        <h2 class="section-title">Built with Pure Apple-Grade Precision</h2>
+        <p class="section-subtitle">Zero AI sparkles. Zero robotic generic definitions. Just seamless vocabulary acquisition.</p>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>Oxford 3000 Smart Whitelist</h3>
+          <p>Every word is checked against a 10,000+ word database. Only uncommon, high-yield vocabulary is highlighted. Everyday words (e.g. <em>remember, change, operate</em>) and tech brands are never falsely flagged.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>0ms Speculative Engine</h3>
+          <p>While you read the subtitle line, Subz pre-warms definitions in background memory. By the time you click, the definition appears in 0 milliseconds with zero network delay.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🎧</div>
+          <h3>Native Voice Pronunciation</h3>
+          <p>Dual-speed pronunciation pills (1.0x and 0.75x) let you train your ear to catch natural native phonetics and word stresses in conversational English.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🎬</div>
+          <h3>YouTube Player Integration</h3>
+          <p>Subz hooks directly into YouTube’s video controller. Click Resume or Replay 5s to seamlessly rewind and continue playback without video desync or pauses.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📓</div>
+          <h3>Personal Study Notebook</h3>
+          <p>Save any word with its in-scene context quote. Build a lasting daily habit with our 5-word goal progress bar and streak tracker in the popup dashboard.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📄</div>
+          <h3>1-Click Clean .txt Export</h3>
+          <p>Take your vocabulary anywhere. Export your complete study sheet with definitions, parts of speech, and dialogue context to a clean text file for Anki, Notion, or paper study.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="steps-section" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Simple 3-Step Flow</span>
+        <h2 class="section-title">How Subz Works in Practice</h2>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">01</div>
+          <h3>Install & Pin</h3>
+          <p>Add Subz to Chrome in one click. Open any YouTube podcast, interview, or tutorial with English captions.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">02</div>
+          <h3>Watch Naturally</h3>
+          <p>Subz unobtrusively underlines uncommon words in Subz Amber without interrupting your movie or lecture.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">03</div>
+          <h3>Click to Learn</h3>
+          <p>Click any word to reveal its simple definition, listen to native audio, bookmark it, and hit Resume!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Privacy Guarantee -->
+  <section class="privacy-section" id="privacy">
+    <div class="container privacy-box">
+      <div class="privacy-badge">🔒 Privacy Guarantee</div>
+      <h2>100% Client-Side. Zero Data Collection.</h2>
+      <p>Your saved words, learning streaks, and preferences never leave your browser. Subz has no external tracking scripts, requires no account login, and never collects your browsing history. Everything is stored locally on your device.</p>
+      <div class="privacy-checks">
+        <span>✓ No Account Required</span>
+        <span>✓ Zero Ads</span>
+        <span>✓ Open Source Code</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="cta-banner">
+    <div class="container">
+      <h2>Start Mastering English on YouTube Today.</h2>
+      <p>Free forever. Lightweight, fast, and engineered with love.</p>
+      <div class="cta-banner-buttons">
+        <a href="#download" class="btn btn-primary">Add to Chrome — Free</a>
+        <a href="https://github.com/Sai-Pavan-Kumar/Subz" target="_blank" class="btn btn-secondary">View on GitHub ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <div class="brand">
+          <img src="assets/logo.png" alt="Subz Logo" width="28" height="28">
+          <span class="brand-text">SUBZ</span>
+        </div>
+        <p class="footer-tagline">Contextual English vocabulary acquisition from real-world video subtitles.</p>
+      </div>
+
+      <div class="footer-attribution">
+        <p>Built with precision by <a href="https://thesurfboard.in" target="_blank" class="surfboard-link">The SurfBoard</a></p>
+        <p class="copyright">© 2026 Subz. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
