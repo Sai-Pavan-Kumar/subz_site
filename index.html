@@ -10,6 +10,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="hero-motion.css">
+  <link rel="stylesheet" href="feature-tiles.css">
+  <link rel="stylesheet" href="story-privacy.css">
+  <script>if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('js');</script>
 </head>
 <body>
 
@@ -34,17 +38,18 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="hero">
-    <div class="container hero-container">
-      <h1 class="hero-title">
-        Master English While <br>
-        <span class="accent-text">Watching YouTube.</span>
-      </h1>
-      <p class="hero-subtitle">
-        Subz intelligently highlights uncommon vocabulary in real-time captions, delivers instant definitions with native audio pronunciation, and builds your personal vocabulary notebook—without ever breaking your flow.
-      </p>
+  <section class="hero" id="demo">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-aurora hero-aurora--blue"></div>
+      <div class="hero-aurora hero-aurora--amber"></div>
+      <div class="word-field" id="word-field"></div>
+    </div>
 
-      <div class="hero-buttons" id="download">
+    <div class="hero-container">
+      <h1 class="hero-title" data-reveal>Master <span class="hero-highlight">English</span> on YouTube.</h1>
+
+      <div class="hero-lead" id="download" data-reveal style="--i:1">
+        <p class="hero-subtitle">Subz highlights the hard words in YouTube subtitles. Click a yellow word below to hear it and see what it means.</p>
         <a href="https://chromewebstore.google.com/detail/subz-%E2%80%94-learn-english-from/ijeppejcikhfellingmikceckhbolpig" target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="btn-cws">
           <svg class="btn-icon" width="20" height="20" viewBox="0 0 48 48" fill="none">
             <path fill="#EA4335" d="M24 12h20.78A23.99 23.99 0 0 0 3.22 12.01L13.61 30l.01-.01A11.99 11.99 0 0 1 24 12Z"/>
@@ -57,48 +62,27 @@
         </a>
       </div>
 
-      <div class="hero-trust">
-        <span>✓ Zero Configuration</span>
-        <span>✓ 100% Client-Side Privacy</span>
-        <span>✓ Works on All English YouTube Videos</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Interactive Live Demo Section -->
-  <section class="demo-section" id="demo">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Interactive Preview</span>
-        <h2 class="section-title">Instant Clarity. Zero Interruptions.</h2>
-        <p class="section-subtitle">Click any highlighted word in the subtitles below to preview pronunciation, meaning, and context in real time.</p>
-      </div>
-
-      <div class="demo-card-stage">
-        <!-- Mock YouTube Player -->
-        <div class="player-mockup">
+      <div class="demo-card-stage" data-ui data-reveal style="--i:2">
+        <div class="player-mockup" id="demo-player">
           <div class="player-topbar">
             <div class="player-title">
               <span class="yt-badge">HD</span>
-              <span>Lex Fridman Podcast #421 — The Future of Language</span>
+              <span>Why Languages Change: Full Interview</span>
             </div>
             <div class="player-status">Subz Active ●</div>
           </div>
 
           <div class="player-screen">
-            <div class="screen-watermark">Interactive Simulation</div>
-            <!-- Subtitle Overlay -->
+            <div class="wave" aria-hidden="true"><i style="--n:0"></i><i style="--n:7"></i><i style="--n:14"></i><i style="--n:21"></i><i style="--n:28"></i><i style="--n:35"></i><i style="--n:6"></i><i style="--n:13"></i><i style="--n:20"></i><i style="--n:27"></i><i style="--n:34"></i><i style="--n:5"></i><i style="--n:12"></i><i style="--n:19"></i><i style="--n:26"></i><i style="--n:33"></i><i style="--n:4"></i><i style="--n:11"></i><i style="--n:18"></i><i style="--n:25"></i><i style="--n:32"></i><i style="--n:3"></i><i style="--n:10"></i><i style="--n:17"></i><i style="--n:24"></i><i style="--n:31"></i><i style="--n:2"></i><i style="--n:9"></i><i style="--n:16"></i><i style="--n:23"></i><i style="--n:30"></i><i style="--n:1"></i><i style="--n:8"></i><i style="--n:15"></i><i style="--n:22"></i><i style="--n:29"></i></div>
             <div class="subtitle-box">
-              <p class="subtitle-text">
-                "We need to <span class="subz-word" data-word="dissect">dissect</span> the subtle <span class="subz-word" data-word="nuances">nuances</span> of this sentence."
-              </p>
+              <p class="subtitle-text" id="subtitle-line"></p>
             </div>
           </div>
 
           <div class="player-controls">
             <div class="playback-bar"><div class="playback-fill"></div></div>
             <div class="controls-row">
-              <span class="control-btn">▶</span>
+              <span class="control-btn" id="player-state">❚❚</span>
               <span class="control-btn">⏮ 5s</span>
               <span class="control-time">14:28 / 58:10</span>
               <span class="control-pill active">CC English</span>
@@ -138,6 +122,16 @@
             "We need to dissect the subtle nuances of this sentence."
           </div>
 
+          <div class="card-goal">
+            <div class="card-goal-label"><span>Today's goal</span><span>3 of 5 words</span></div>
+            <div class="card-goal-bar"><i></i></div>
+          </div>
+
+          <ul class="card-saved">
+            <li><b>Nuance</b><span>a subtle difference</span></li>
+            <li><b>Coherent</b><span>clear and logical</span></li>
+          </ul>
+
           <div class="card-footer">
             <button class="btn-replay" id="demo-replay">↺ Replay 5s</button>
             <span class="btn-ghost">I know this</span>
@@ -145,113 +139,125 @@
           </div>
         </div>
       </div>
+
+      <div class="hero-trust" data-reveal style="--i:3">
+        <span>✓ Zero Configuration</span>
+        <span>✓ 100% Client-Side Privacy</span>
+        <span>✓ Works on All English YouTube Videos</span>
+      </div>
     </div>
   </section>
 
-  <!-- Feature Grid -->
+  <!-- Features -->
   <section class="features" id="features">
     <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Engineered for Immersion</span>
-        <h2 class="section-title">Built to Keep You in the Flow</h2>
-        <p class="section-subtitle">Subtle highlights, instant definitions, and zero distraction. Everything you need to master English naturally while watching what you love.</p>
+      <div class="section-header" data-reveal>
+        <h2 class="section-title">Built to keep you in the flow.</h2>
+        <p class="section-subtitle">Subtle highlights, instant definitions, and nothing that pulls you out of the video.</p>
       </div>
 
-      <div class="feature-grid">
-        <div class="feature-card">
-          <div class="feature-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="22" y1="12" x2="18" y2="12"></line>
-              <line x1="6" y1="12" x2="2" y2="12"></line>
-              <line x1="12" y1="6" x2="12" y2="2"></line>
-              <line x1="12" y1="22" x2="12" y2="18"></line>
-            </svg>
+      <div class="tile-grid">
+        <article class="tile tile--wide tile--dark" data-reveal>
+          <p class="filter-line" aria-hidden="true"><span>We need to</span> <span class="is-rare">dissect</span> <span>the subtle</span> <span class="is-rare" style="--d:0.8s">nuances</span> <span>of this sentence, and keep it</span> <span class="is-rare" style="--d:1.6s">coherent.</span></p>
+          <div>
+            <h3>Curated Vocabulary Filter</h3>
+            <p>Filtered against 10,000+ essential words, so only meaningful vocabulary lights up. Everyday words stay untouched.</p>
           </div>
-          <h3>Curated Vocabulary Filter</h3>
-          <p>Filtered against 10,000+ essential words so only meaningful, high-yield vocabulary is highlighted. Everyday conversation and common terms stay untouched.</p>
-        </div>
+        </article>
 
-        <div class="feature-card">
-          <div class="feature-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-            </svg>
+        <article class="tile tile--narrow" data-reveal style="--i:1">
+          <div class="mini-card" aria-hidden="true"><strong>Nuance</strong>A subtle difference in meaning, sound, or feeling.</div>
+          <div>
+            <h3>Instant Definitions</h3>
+            <p>Pre-loaded in the background, so cards appear the moment you click. No spinners, no waiting.</p>
           </div>
-          <h3>Instant Definitions</h3>
-          <p>Pre-loaded seamlessly in background memory so cards appear instantly the moment you click. Zero loading spinners, zero waiting.</p>
-        </div>
+        </article>
 
-        <div class="feature-card">
-          <div class="feature-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-              <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-            </svg>
+        <article class="tile tile--narrow tile--blue" data-reveal>
+          <div class="tile-wave" aria-hidden="true"><div class="wave"><i style="--n:0"></i><i style="--n:7"></i><i style="--n:14"></i><i style="--n:5"></i><i style="--n:12"></i><i style="--n:3"></i><i style="--n:10"></i><i style="--n:1"></i><i style="--n:8"></i><i style="--n:15"></i><i style="--n:6"></i><i style="--n:13"></i><i style="--n:4"></i><i style="--n:11"></i><i style="--n:2"></i><i style="--n:9"></i></div></div>
+          <div>
+            <div class="speed-pair" aria-hidden="true"><span>1.0x</span><span>0.75x</span></div>
+            <h3>Natural Audio Pronunciation</h3>
+            <p>Hear every word at two speeds and train your ear for natural conversational English.</p>
           </div>
-          <h3>Natural Audio Pronunciation</h3>
-          <p>Dual-speed pronunciation (1.0x and 0.75x) lets you train your ear to catch natural native phonetics and word stresses in conversational English.</p>
-        </div>
+        </article>
 
-        <div class="feature-card">
-          <div class="feature-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="4" width="20" height="16" rx="3"></rect>
-              <polygon points="10 8 16 12 10 16 10" fill="currentColor"></polygon>
-            </svg>
+        <article class="tile tile--wide" data-reveal style="--i:1">
+          <div class="notebook" aria-hidden="true">
+            <div class="goal-ring">
+              <svg viewBox="0 0 120 120"><circle class="ring-track" cx="60" cy="60" r="50" pathLength="100"></circle><circle class="ring-fill" cx="60" cy="60" r="50" pathLength="100"></circle></svg>
+              <b>3 / 5</b>
+            </div>
+            <ul class="saved-words">
+              <li style="--n:0">Dissect: to examine in close detail</li>
+              <li style="--n:1">Nuance: a subtle difference</li>
+              <li style="--n:2">Coherent: clear and logical</li>
+            </ul>
           </div>
-          <h3>Seamless Video Controls</h3>
-          <p>Integrated directly with YouTube. Resume playback or rewind 5 seconds with a single click to hear the word again in its original scene.</p>
-        </div>
+          <div>
+            <h3>Personal Vocabulary Notebook</h3>
+            <p>Save any word with its in-scene quote. Build a daily habit with a 5-word goal and a streak tracker in the popup.</p>
+          </div>
+        </article>
 
-        <div class="feature-card">
-          <div class="feature-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-            </svg>
+        <article class="tile tile--half" data-reveal>
+          <div class="rewind" aria-hidden="true">
+            <div class="rewind-bar"><i></i></div>
+            <div class="rewind-buttons"><span>⏮ 5s</span><span>Resume ▶</span></div>
           </div>
-          <h3>Personal Vocabulary Notebook</h3>
-          <p>Save any word with its in-scene context quote. Build a lasting daily habit with our 5-word goal progress bar and streak tracker in the popup dashboard.</p>
-        </div>
+          <div>
+            <h3>Video Controls Built In</h3>
+            <p>Integrated directly with YouTube. Resume, or rewind 5 seconds to hear the word again in its original scene.</p>
+          </div>
+        </article>
 
-        <div class="feature-card">
-          <div class="feature-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-              <polyline points="7 10 12 15 17 10"></polyline>
-              <line x1="12" y1="15" x2="12" y2="3"></line>
-            </svg>
+        <article class="tile tile--half" data-reveal style="--i:1">
+          <pre class="export-file" aria-hidden="true">nuance (noun)
+A subtle difference in meaning.
+"...the subtle nuances of this sentence."</pre>
+          <div>
+            <h3>One-Click Clean Export</h3>
+            <p>Export definitions, parts of speech, and dialogue context to a clean text file for Anki, Notion, or offline study.</p>
           </div>
-          <h3>One-Click Clean Export</h3>
-          <p>Take your vocabulary anywhere. Export your complete study sheet with definitions, parts of speech, and dialogue context to a clean text file for Anki, Notion, or offline study.</p>
-        </div>
+        </article>
       </div>
     </div>
   </section>
 
   <!-- How It Works -->
-  <section class="steps-section" id="how-it-works">
+  <section class="story" id="how-it-works">
     <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Simple 3-Step Flow</span>
-        <h2 class="section-title">How Subz Works in Practice</h2>
+      <div class="section-header" data-reveal>
+        <h2 class="section-title">One word, three moments.</h2>
       </div>
 
-      <div class="steps-grid">
-        <div class="step-card">
-          <div class="step-number">01</div>
-          <h3>Install & Pin</h3>
-          <p>Add Subz to Chrome in one click. Open any YouTube podcast, interview, or tutorial with English captions.</p>
+      <div class="story-grid">
+        <div class="story-steps">
+          <div class="story-step is-active">
+            <h3>Install and pin</h3>
+            <p>Add Subz to Chrome in one click. Open any YouTube podcast, interview, or tutorial with English captions.</p>
+          </div>
+          <div class="story-step">
+            <h3>Watch naturally</h3>
+            <p>Subz underlines unfamiliar words right inside your subtitles without interrupting your movie or lecture.</p>
+          </div>
+          <div class="story-step">
+            <h3>Click to learn</h3>
+            <p>Click any word to reveal its simple definition, listen to native audio, bookmark it, and hit Resume.</p>
+          </div>
         </div>
-        <div class="step-card">
-          <div class="step-number">02</div>
-          <h3>Watch Naturally</h3>
-          <p>Subz subtly underlines unfamiliar words right inside your subtitles without interrupting your movie or lecture.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-number">03</div>
-          <h3>Click to Learn</h3>
-          <p>Click any word to reveal its simple definition, listen to native audio, bookmark it, and hit Resume!</p>
+
+        <div class="story-stage" id="story-stage" data-step="0" aria-hidden="true">
+          <div class="stage-panel stage-panel--install">
+            <div class="browser-bar"><span>youtube.com</span><img src="assets/icon128.png" alt="" width="36" height="36"></div>
+          </div>
+          <div class="stage-panel stage-panel--watch">
+            <div class="wave"><i style="--n:0"></i><i style="--n:7"></i><i style="--n:14"></i><i style="--n:21"></i><i style="--n:0"></i><i style="--n:7"></i><i style="--n:14"></i><i style="--n:21"></i><i style="--n:0"></i><i style="--n:7"></i><i style="--n:14"></i><i style="--n:21"></i><i style="--n:0"></i><i style="--n:7"></i><i style="--n:14"></i><i style="--n:21"></i><i style="--n:0"></i><i style="--n:7"></i><i style="--n:14"></i><i style="--n:21"></i><i style="--n:0"></i><i style="--n:7"></i><i style="--n:14"></i><i style="--n:21"></i><i style="--n:0"></i><i style="--n:7"></i><i style="--n:14"></i><i style="--n:21"></i></div>
+            <div class="stage-subtitle">We need to dissect the subtle <span class="stage-word">nuances</span> here.</div>
+          </div>
+          <div class="stage-panel stage-panel--learn">
+            <div class="stage-card"><strong>Nuance</strong><p>A subtle or small difference in meaning, sound, or feeling.</p><em>★ Saved to notebook</em></div>
+          </div>
         </div>
       </div>
     </div>
@@ -259,57 +265,72 @@
 
   <!-- Privacy Guarantee -->
   <section class="privacy-section" id="privacy">
-    <div class="container privacy-box">
-      <div class="privacy-badge">🔒 Privacy Guarantee</div>
-      <h2>100% Client-Side. Zero Data Collection.</h2>
-      <p>Your saved words, learning streaks, and preferences never leave your browser. Subz has no external tracking scripts, requires no account login, and never collects your browsing history. Everything is stored locally on your device.</p>
-      <div class="privacy-checks">
-        <span>✓ No Account Required</span>
-        <span>✓ Zero Ads</span>
-        <span>✓ Open Source Code</span>
+    <div class="container privacy-grid">
+      <div data-reveal>
+        <h2>Your words stay on your device.</h2>
+        <p>Your saved words, learning streaks, and preferences never leave your browser. Subz has no external tracking scripts, requires no account login, and never collects your browsing history.</p>
+        <div class="privacy-checks">
+          <span>✓ No Account Required</span>
+          <span>✓ Zero Ads</span>
+        </div>
       </div>
-    </div>
-  </section>
-
-  <!-- CTA Banner -->
-  <section class="cta-banner">
-    <div class="container">
-      <h2>Start Mastering English on YouTube Today.</h2>
-      <p>Free forever. Lightweight, fast, and engineered with love.</p>
-      <div class="cta-banner-buttons">
-        <a href="https://chromewebstore.google.com/detail/subz-%E2%80%94-learn-english-from/ijeppejcikhfellingmikceckhbolpig" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-          <svg class="btn-icon" width="20" height="20" viewBox="0 0 48 48" fill="none">
-            <path fill="#EA4335" d="M24 12h20.78A23.99 23.99 0 0 0 3.22 12.01L13.61 30l.01-.01A11.99 11.99 0 0 1 24 12Z"/>
-            <path fill="#FBBC04" d="m34.39 30 10.39-17.99A23.99 23.99 0 0 1 24 48l10.39-18-.01.01A11.99 11.99 0 0 0 34.39 30Z"/>
-            <path fill="#34A853" d="M13.61 30 3.22 12A23.99 23.99 0 0 0 24 48l10.39-18H13.61a11.99 11.99 0 0 1 0-.01Z"/>
-            <circle cx="24" cy="24" r="12" fill="#FFFFFF"/>
-            <circle cx="24" cy="24" r="9.5" fill="#1A73E8"/>
-          </svg>
-          <span>Add to Chrome — Free</span>
-        </a>
-        <a href="https://github.com/Sai-Pavan-Kumar/Subz" target="_blank" class="btn btn-secondary">View on GitHub ↗</a>
+      <div class="device" aria-hidden="true" data-reveal style="--i:1">
+        <div class="device-orbit">
+          <span style="--a:0deg">nuance</span>
+          <span style="--a:72deg">streak</span>
+          <span style="--a:144deg">dissect</span>
+          <span style="--a:216deg">notebook</span>
+          <span style="--a:288deg">coherent</span>
+        </div>
+        <div class="device-core"><img src="assets/icon128.png" alt="" width="40" height="40"></div>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="footer">
-    <div class="container footer-container">
-      <div class="footer-brand">
-        <div class="brand">
-          <img src="assets/logo.png" alt="Subz Logo" width="28" height="28">
-          <span class="brand-text">SUBZ</span>
-        </div>
-        <p class="footer-tagline">Contextual English vocabulary acquisition from real-world video subtitles.</p>
-      </div>
+    <div class="footer-wordmark" aria-hidden="true">SUBZ</div>
+    <p class="footer-oneliner">Learn English from YouTube subtitles.</p>
 
-      <div class="footer-attribution">
-        <p>Built with precision by <a href="https://thesurfboard.in" target="_blank" class="surfboard-link">The SurfBoard</a></p>
-        <p class="copyright">© 2026 Subz. All rights reserved.</p>
-      </div>
+    <a href="https://chromewebstore.google.com/detail/subz-%E2%80%94-learn-english-from/ijeppejcikhfellingmikceckhbolpig" target="_blank" rel="noopener noreferrer" class="btn btn-primary footer-cta">
+      <svg class="btn-icon" width="20" height="20" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <path fill="#EA4335" d="M24 12h20.78A23.99 23.99 0 0 0 3.22 12.01L13.61 30l.01-.01A11.99 11.99 0 0 1 24 12Z"/>
+        <path fill="#FBBC04" d="m34.39 30 10.39-17.99A23.99 23.99 0 0 1 24 48l10.39-18-.01.01A11.99 11.99 0 0 0 34.39 30Z"/>
+        <path fill="#34A853" d="M13.61 30 3.22 12A23.99 23.99 0 0 0 24 48l10.39-18H13.61a11.99 11.99 0 0 1 0-.01Z"/>
+        <circle cx="24" cy="24" r="12" fill="#FFFFFF"/>
+        <circle cx="24" cy="24" r="9.5" fill="#1A73E8"/>
+      </svg>
+      <span>Add to Chrome — Free</span>
+    </a>
+
+    <nav class="footer-links" aria-label="Footer">
+      <a href="#demo">Live Demo</a>
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#privacy">Privacy</a>
+    </nav>
+
+    <div class="footer-meta">
+      <span>© 2026 Subz</span>
+      <a class="footer-social" href="https://www.instagram.com/the_surfboard" target="_blank" rel="noopener noreferrer" aria-label="The SurfBoard on Instagram">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+          <circle cx="12" cy="12" r="4"></circle>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+        </svg>
+      </a>
+      <a class="footer-social" href="https://www.youtube.com/@the_surfboard?sub_confirmation=1" target="_blank" rel="noopener noreferrer" aria-label="The SurfBoard on YouTube">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="5" width="20" height="14" rx="4"></rect>
+          <polygon points="10 9 15 12 10 15 10 9"></polygon>
+        </svg>
+      </a>
     </div>
+
+    <p class="footer-maker">Made by <a href="https://thesurfboard.in" target="_blank" rel="noopener noreferrer">The SurfBoard</a>. Built for humans.</p>
   </footer>
 
   <script src="main.js"></script>
+  <script src="motion.js"></script>
 </body>
 </html>

@@ -1,0 +1,129 @@
+/**
+ * Hero background, waveform, shared heading and scroll entrances. Motion uses
+ * transform and opacity only, with a still fallback for reduced motion.
+ */
+
+/* Hero background: the product's own material, subtitles drifting past with
+   the hard words lighting up, instead of a decorative blob. */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-aurora {
+  position: absolute;
+  width: 70vw;
+  height: 70vw;
+  border-radius: 50%;
+  animation: auroraDrift 18s ease-in-out infinite alternate;
+}
+
+.hero-aurora--blue {
+  top: -30vw;
+  left: -14vw;
+  background: radial-gradient(circle, var(--primary-blue), transparent 65%);
+  opacity: 0.55;
+}
+
+.hero-aurora--amber {
+  right: -24vw;
+  bottom: -34vw;
+  background: radial-gradient(circle, var(--accent-amber), transparent 62%);
+  opacity: 0.2;
+  animation-duration: 24s;
+  animation-direction: alternate-reverse;
+}
+
+@keyframes auroraDrift {
+  from { transform: translate3d(-6%, -4%, 0) scale(1); }
+  to { transform: translate3d(10%, 8%, 0) scale(1.15); }
+}
+
+.word-field {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.word-row {
+  display: flex;
+  width: max-content;
+  gap: 0.6em;
+  font-size: clamp(28px, 4vw, 64px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  color: var(--on-brand-abyss);
+  animation: wordRowDrift 70s linear infinite;
+}
+
+.word-row span { opacity: 0.05; }
+.word-row .is-rare { color: var(--accent-amber); opacity: 0.14; }
+.word-row:nth-child(even) { animation-direction: reverse; animation-duration: 90s; }
+
+@keyframes wordRowDrift {
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+/* Waveform: stands in for the video picture and has no edge to crop. */
+.wave {
+  position: absolute;
+  inset: 0 0 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(3px, 0.6vw, 8px);
+  padding: 0 8%;
+}
+
+.wave i {
+  flex: 1 1 0;
+  max-width: 14px;
+  height: 58%;
+  border-radius: 99px;
+  background-color: var(--brand-tint);
+  transform-origin: center;
+  animation: waveBar 1.3s ease-in-out infinite alternate;
+  animation-delay: calc(var(--n) * -0.17s);
+}
+
+.wave i:nth-child(3n) { background-color: var(--primary-blue); animation-duration: 0.9s; }
+.wave i:nth-child(7n) { background-color: var(--accent-amber); animation-duration: 1.6s; }
+
+@keyframes waveBar {
+  from { transform: scaleY(0.12); }
+  to { transform: scaleY(1); }
+}
+
+.player-mockup.is-paused .wave i { animation-play-state: paused; }
+
+/* Shared section heading */
+.section-title {
+  font-size: clamp(36px, 5vw, 72px);
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+/* Entrances: hidden only once script has confirmed it can reveal them. */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--i, 0) * 80ms);
+}
+
+.js [data-reveal].is-in { opacity: 1; transform: none; }
+
+.js .demo-card-stage[data-reveal] { transform: translateY(40px) scale(0.97); }
+.js .demo-card-stage[data-reveal].is-in { transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-aurora,
+  .word-row,
+  .wave i { animation: none; }
+  .wave i { transform: scaleY(0.6); }
+}
